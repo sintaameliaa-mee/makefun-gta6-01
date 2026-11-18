@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solmar Bay — Open-World Crime Game</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="game"></div>
+
+<!-- ============ HUD ============ -->
+<div id="hud" style="display:none">
+  <div id="vignette"></div>
+  <div id="damage-flash"></div>
+
+  <div id="objective">
+    <div id="objective-text">Explore Solmar Bay</div>
+    <div id="objective-dist"></div>
+  </div>
+
+  <div id="top-right">
+    <div id="stars">☆☆☆☆☆</div>
+    <div id="money">$120</div>
+    <div id="clock">16:20</div>
+    <button id="btn-mute" type="button">MUTE (M)</button>
+  </div>
+
+  <div id="toasts"></div>
+
+  <div id="vitals">
+    <div id="health-bar" class="bar"><div id="health-fill"></div></div>
+    <div id="armor-bar" class="bar" style="display:none"><div id="armor-fill"></div></div>
+    <div id="weapon-row"><span id="weapon-label">FISTS</span> <span id="ammo-label"></span></div>
+  </div>
+
+  <div id="minimap-wrap">
+    <canvas id="minimap" width="190" height="190"></canvas>
+    <div id="speed" style="display:none">0 km/h</div>
+  </div>
+
+  <div id="hint"></div>
+
+  <div id="banner">
+    <div id="banner-title"></div>
+    <div id="banner-sub"></div>
+  </div>
+</div>
+
+<!-- ============ START SCREEN ============ -->
+<div id="start-screen">
+  <div class="menu-panel">
+    <h1>SOLMAR BAY</h1>
+    <p class="tagline">A sun-soaked open-world crime story</p>
+    <p class="intro">Rex Marlow is back in Solmar Bay with $120 and a debt to pay.
+      Steal cars, outrun the police, run jobs for Mama Rosa — and take the Big Score.</p>
+    <button id="btn-new" type="button">NEW GAME</button>
+    <button id="btn-continue" type="button" style="display:none">CONTINUE</button>
+    <button id="btn-help" type="button">HOW TO PLAY</button>
+    <div id="help-panel" style="display:none">
+      <table>
+        <tr><td>W A S D</td><td>Move / drive</td></tr>
+        <tr><td>Mouse</td><td>Look around (click to capture)</td></tr>
+        <tr><td>Shift</td><td>Sprint</td></tr>
+        <tr><td>Space</td><td>Jump / handbrake</td></tr>
+        <tr><td>E</td><td>Steal / exit car</td></tr>
+        <tr><td>Click</td><td>Shoot (pistol) / punch</td></tr>
+        <tr><td>F</td><td>Punch</td></tr>
+        <tr><td>R</td><td>Reload</td></tr>
+        <tr><td>Esc / P</td><td>Pause</td></tr>
+        <tr><td>M</td><td>Mute</td></tr>
+      </table>
+      <p>Five story missions, taxi fares and ten hidden packages.
+        Wanted stars bring the police — break line of sight to cool off.
+        Progress saves automatically after every mission.</p>
+    </div>
+    <p class="fineprint">An original game: its city, characters, story, art and sounds are all
+      made for this entry. Keyboard and mouse required. Best in desktop Chrome.</p>
+  </div>
+</div>
+
+<!-- ============ PAUSE ============ -->
+<div id="pause-screen" style="display:none">
+  <div class="menu-panel small">
+    <h2>PAUSED</h2>
+    <p id="pause-stats"></p>
+    <button id="btn-resume" type="button">RESUME</button>
+    <button id="btn-save" type="button">SAVE GAME</button>
+    <button id="btn-restart-mission" type="button">RESTART MISSION</button>
+    <button id="btn-quit" type="button">QUIT TO TITLE</button>
+  </div>
+</div>
+
+<!-- ============ BUSTED / WASTED ============ -->
+<div id="busted-screen" style="display:none">
+  <div class="end-panel">
+    <h2 class="busted-title">BUSTED</h2>
+    <p>The Solmar Bay police got you. Bail costs $200.</p>
+    <p class="press-key">Press ENTER to continue</p>
+  </div>
+</div>
+<div id="wasted-screen" style="display:none">
+  <div class="end-panel">
+    <h2 class="wasted-title">WASTED</h2>
+    <p>You got dropped. The hospital bill is $300.</p>
+    <p class="press-key">Press ENTER to continue</p>
+  </div>
+</div>
+
+<div id="error-trap" style="display:none"></div>
+<div id="ready-marker" style="display:none"></div>
+
+<script src="vendor/three.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/city.js"></script>
+<script src="js/vehicles.js"></script>
+<script src="js/pedestrians.js"></script>
+<script src="js/combat.js"></script>
+<script src="js/player.js"></script>
+<script src="js/police.js"></script>
+<script src="js/missions.js"></script>
+<script src="js/hud.js"></script>
+<script src="js/save.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
